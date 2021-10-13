@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :friends, -> { merge(Friendship.friends) }, through: :friend_sent, source: :sent_to
   has_many :pending_requests, -> { merge(Friendship.not_friends) }, through: :friend_sent, source: :sent_to
   has_many :recieved_requests, -> { merge(Friendship.not_friends) }, through: :friend_request, source: :sent_by
+  has_many :notifications, dependent: :destroy
 
   mount_uploader :image, ImageUploader
   # Include default devise modules. Others available are:
