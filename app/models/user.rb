@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   has_many :posts
   has_many :comments
   has_many :likes, dependent: :destroy
@@ -11,12 +15,27 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   mount_uploader :image, ImageUploader
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-
   validate :picture_size
+
+  # Returns a string containing this user's first name and last name
+  def full_name
+    "#{fname} #{lname}"
+  end
+
+  # Returns all posts from this user's friends and self
+  def friends_and_own_posts
+    myfriends = friends
+    our_posts = []
+    myfriends.each do |f|
+      f.posts.each do |p|
+        our_posts << p
+      end
+    end
+    posts.each do |p|
+      our_posts << p
+    end
+    our_posts
+  end
 
   private
 
