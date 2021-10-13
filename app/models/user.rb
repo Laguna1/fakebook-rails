@@ -17,7 +17,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validate :picture_size
-  
 
   private
 

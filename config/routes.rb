@@ -1,18 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'friendships/create'
-  get 'likes/create'
-  get 'comments/new'
-  get 'comments/create'
-  get 'posts/index'
-  get 'posts/show'
-  get 'posts/new'
-  get 'posts/create'
-  get 'users/index'
-  get 'users/show'
+ root 'users#index'
   devise_for :users
-
-  root 'users#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users, only: %i[index show] do
+    resources :friendships, only: :create
+  end
+  resources :posts, only: %i[index show new create destroy] do
+    resources :likes, only: :create
+  end
+  resources :comments, only: %i[new create destroy] do
+    resources :likes, only: :create
+  end
 end
