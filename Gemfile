@@ -21,6 +21,18 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'rubocop'
+# Devise security gem
+gem 'devise'
+# To handle images
+gem 'carrierwave', '~> 2.0'
+gem 'mini_magick'
+# Use omniauth-facebook gem allows Facebook login integration
+gem 'omniauth-facebook'
+# Allows access to twitter's Bootstrap framework
+gem 'bootstrap'
+# Hirb gem organizes the display for active record information into tables when using the rails console… eg. After opening rails console type Hirb.enable to activate it
+gem 'hirb'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -42,6 +54,11 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  # RSpec Testing
+  gem 'database_cleaner'
+  gem 'rspec-rails'
+  # A Ruby gem to load environment variables from `.env` files.
+  gem 'dotenv-rails'
 end
 
 group :test do
