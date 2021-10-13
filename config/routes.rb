@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'friendships/create'
   get 'likes/create'
   get 'comments/new'
   get 'comments/create'
