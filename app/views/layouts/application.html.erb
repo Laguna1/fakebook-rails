@@ -13,7 +13,13 @@
   </head>
 
   <body>
-  <h1 class="text-center text-success">FAKEBOOK</h1>
+  
+     <%= render 'layouts/header' %>
+  <div class='container'>
+    <br>
+    <%= render 'layouts/flash' %>
+    <h1 class="text-center text-success">FAKEBOOK</h1>
     <%= yield %>
+  </div>
   </body>
 </html>
