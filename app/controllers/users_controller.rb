@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       redirect_back(fallback_location: users_path(current_user))
       return
     end
+
     image = params[:user][:image] unless params[:user].nil?
     if image
       @user.image = image
@@ -26,5 +27,11 @@ class UsersController < ApplicationController
       end
     end
     redirect_back(fallback_location: root_path)
+  end
+
+  # Modifies current user's notice_seen column to true
+  def saw_notification
+    current_user.notice_seen = true
+    current_user.save
   end
 end
