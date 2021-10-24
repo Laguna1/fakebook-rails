@@ -3,7 +3,7 @@ class LikesController < ApplicationController
 
   def create
     type = type_subject?(params)[0]
-    @subject = type_subject?(params)[i]
+    @subject = type_subject?(params)[1]
     notice_type = "like-#{type}"
     return unless @subject
 
